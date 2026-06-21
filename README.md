@@ -109,5 +109,3 @@ src/
 MIT
 
 ---
-
-Built with 🔥 by [Your Name] • Powered by Ollama
