@@ -8,8 +8,6 @@
 
 </div>
 
-![Roast My GitHub — put a GitHub profile on trial](public/readme/hero.png)
-
 Roast My GitHub turns public commit history into a comedy set. Enter a username, let the app inspect the repos, and watch Groq deliver a theatrical, evidence-backed roast. Feeling competitive? Put two profiles in **Battle Mode** and let the code decide who survives.
 
 ## Highlights
@@ -22,28 +20,6 @@ Roast My GitHub turns public commit history into a comedy set. Enter a username,
 | 🎭 **Theatrical Reveal** | Comedy-club staging, animated evidence cards, and a no-mercy verdict. |
 | 📸 **Shareable Results** | Download a polished battle card and export the emotional damage. |
 | 🔒 **Public Data Only** | Public GitHub signals in. Private life left completely out. |
-
-## Showcase
-
-### Solo Roast
-
-> Your public portfolio enters the evidence locker.
-
-![Solo roast profile analysis and evidence board](public/readme/solo-roast.png)
-
-### Battle Mode
-
-> Two developers. One ring. Absolutely no protection from the README audit.
-
-![Roast Battle Mode with two GitHub profiles](public/readme/battle-mode.png)
-
-### Share Card
-
-> The verdict, professionally packaged for irresponsible distribution.
-
-<div align="center">
-  <img src="public/readme/share-card.png" alt="Downloadable GitHub roast battle result card" width="720" />
-</div>
 
 ## Battle Mode
 
