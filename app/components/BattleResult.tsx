@@ -157,10 +157,16 @@ export default function BattleResult({
   result,
   onAgain,
   onCopy,
+  onCopyVerdict,
+  onDownload,
+  isGeneratingCard,
 }: {
   result: BattleResultData;
   onAgain: () => void;
   onCopy: () => void;
+  onCopyVerdict: () => void;
+  onDownload: () => void;
+  isGeneratingCard: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const noDelay = Boolean(reduceMotion);
@@ -267,6 +273,10 @@ export default function BattleResult({
 
       <motion.div className="battle-actions" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: winnerStart }}>
         <button type="button" className="share-button" onClick={onAgain}>Battle Again</button>
+        <button type="button" className="share-button battle-download-button" onClick={onDownload} disabled={isGeneratingCard}>
+          {isGeneratingCard ? "Developing Fight Poster…" : "Download Battle Card"}
+        </button>
+        <button type="button" className="copy-button" onClick={onCopyVerdict}>Copy Battle Verdict</button>
         <button type="button" className="copy-button" onClick={onCopy}>Copy Battle Result</button>
       </motion.div>
     </motion.section>

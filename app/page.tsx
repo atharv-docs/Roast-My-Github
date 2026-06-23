@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import BattleResult, { BattleResultData } from "./components/BattleResult";
+import BattleShareCard from "./components/BattleShareCard";
 import RoastShareCard from "./components/RoastShareCard";
 
 const soloLoadingMessages = [
@@ -380,9 +381,11 @@ export default function Home() {
   const [result, setResult] = useState<RoastResult | null>(null);
   const [battleResult, setBattleResult] = useState<BattleResultData | null>(null);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);
+  const [isGeneratingBattleCard, setIsGeneratingBattleCard] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const outcomeRef = useRef<HTMLDivElement>(null);
   const shareCardRef = useRef<HTMLDivElement>(null);
+  const battleShareCardRef = useRef<HTMLDivElement>(null);
   const activeLoadingMessages = mode === "battle" ? battleLoadingMessages : soloLoadingMessages;
 
   useEffect(() => {
@@ -552,6 +555,23 @@ export default function Home() {
     }
   }
 
+  async function handleCopyBattleVerdict() {
+    if (!battleResult) return;
+    const { winner, verdict } = battleResult.battle;
+    const text = [
+      `WINNER: @${winner.username}`,
+      `FINISHING MOVE: ${winner.finishingMove}`,
+      `VERDICT: ${verdict}`,
+    ].join("\n\n");
+
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("Battle verdict copied to clipboard");
+    } catch {
+      setError("The clipboard left the arena before the final bell.");
+    }
+  }
+
   function handleBattleAgain() {
     setBattleResult(null);
     setError("");
@@ -602,6 +622,52 @@ export default function Home() {
       showToast("The photo lab fumbled the evidence. Try again.");
     } finally {
       setIsGeneratingCard(false);
+    }
+  }
+
+  async function handleDownloadBattleCard() {
+    const card = battleShareCardRef.current;
+    if (!card || !battleResult || isGeneratingBattleCard) return;
+
+    setIsGeneratingBattleCard(true);
+    try {
+      await document.fonts.ready;
+      const images = Array.from(card.querySelectorAll("img"));
+      await Promise.all(
+        images.map(
+          (image) =>
+            image.complete ||
+            new Promise<void>((resolve) => {
+              image.addEventListener("load", () => resolve(), { once: true });
+              image.addEventListener("error", () => resolve(), { once: true });
+            }),
+        ),
+      );
+
+      const { toPng } = await import("html-to-image");
+      const dataUrl = await toPng(card, {
+        width: 1080,
+        height: 1350,
+        canvasWidth: 1080,
+        canvasHeight: 1350,
+        pixelRatio: 1,
+        cacheBust: true,
+        skipFonts: true,
+        backgroundColor: "#090807",
+      });
+
+      const fighterA = battleResult.profiles.A.username;
+      const fighterB = battleResult.profiles.B.username;
+      const download = document.createElement("a");
+      download.download = `github-roast-battle-${fighterA}-vs-${fighterB}.png`;
+      download.href = dataUrl;
+      download.click();
+      showToast("Battle card downloaded");
+    } catch (generationError) {
+      console.error("Battle card generation failed:", generationError);
+      showToast("The fight photographer missed the knockout. Try again.");
+    } finally {
+      setIsGeneratingBattleCard(false);
     }
   }
 
@@ -747,6 +813,9 @@ export default function Home() {
               result={battleResult}
               onAgain={handleBattleAgain}
               onCopy={handleCopyBattle}
+              onCopyVerdict={handleCopyBattleVerdict}
+              onDownload={handleDownloadBattleCard}
+              isGeneratingCard={isGeneratingBattleCard}
             />
           )}
         </AnimatePresence>
@@ -759,6 +828,26 @@ export default function Home() {
           username={result.profile.username}
           score={result.roast.score}
           savageLines={result.roast.savageLines}
+        />
+      )}
+
+      {battleResult && (
+        <BattleShareCard
+          ref={battleShareCardRef}
+          fighterAAvatar={battleResult.profiles.A.avatar_url}
+          fighterAUsername={battleResult.profiles.A.username}
+          fighterAScore={battleResult.battle.fighterA.score}
+          fighterABiggestCrime={battleResult.battle.fighterA.biggestCrime}
+          fighterATopRoastLine={battleResult.battle.fighterA.roastLines[0] ?? "The repository evidence declined to comment."}
+          fighterBAvatar={battleResult.profiles.B.avatar_url}
+          fighterBUsername={battleResult.profiles.B.username}
+          fighterBScore={battleResult.battle.fighterB.score}
+          fighterBBiggestCrime={battleResult.battle.fighterB.biggestCrime}
+          fighterBTopRoastLine={battleResult.battle.fighterB.roastLines[0] ?? "The repository evidence declined to comment."}
+          winnerUsername={battleResult.battle.winner.username}
+          winnerReason={battleResult.battle.winner.reason}
+          winnerFinishingMove={battleResult.battle.winner.finishingMove}
+          finalVerdict={battleResult.battle.verdict}
         />
       )}
 

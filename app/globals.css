@@ -372,6 +372,60 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid 
 .share-card-footer { position: absolute; z-index: 2; left: 54px; right: 54px; bottom: 31px; display: flex; align-items: center; justify-content: space-between; color: #6e665d; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .13em; text-transform: uppercase; }
 .share-card-footer span:first-child { color: #efab3f; font-weight: 900; }
 
+.battle-share-card-host { position: fixed; left: -12000px; top: 0; width: 1080px; height: 1350px; overflow: hidden; pointer-events: none; }
+.battle-share-card { position: relative; width: 1080px; height: 1350px; overflow: hidden; padding: 50px 56px 42px; color: #f7eedb; border: 1px solid #37291c; background: #090807; font-family: Inter, Arial, sans-serif; }
+.battle-share-card::before, .battle-share-card::after { content: ""; position: absolute; z-index: 2; width: 52px; height: 52px; border-color: rgba(239,171,63,.5); }
+.battle-share-card::before { left: 25px; top: 25px; border-left: 2px solid; border-top: 2px solid; }
+.battle-share-card::after { right: 25px; bottom: 25px; border-right: 2px solid; border-bottom: 2px solid; }
+.battle-share-texture { position: absolute; inset: 0; opacity: .35; background: repeating-linear-gradient(0deg, transparent 0 4px, rgba(255,255,255,.018) 4px 5px), repeating-linear-gradient(90deg, transparent 0 89px, rgba(239,171,63,.018) 89px 90px); }
+.battle-share-vignette { position: absolute; inset: 0; box-shadow: inset 0 0 180px 45px rgba(0,0,0,.82); }
+.battle-share-spotlight { position: absolute; top: -260px; width: 580px; height: 860px; border-radius: 50%; background: radial-gradient(ellipse, rgba(239,171,63,.3), rgba(160,89,18,.08) 46%, transparent 70%); }
+.battle-share-spotlight.spotlight-a { left: -50px; transform: rotate(-7deg); }
+.battle-share-spotlight.spotlight-b { right: -50px; transform: rotate(7deg); }
+.battle-share-header { position: relative; z-index: 3; height: 205px; text-align: center; border-bottom: 1px solid rgba(239,171,63,.22); }
+.battle-share-brand { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 11px; color: #a3998d; font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.battle-share-brand span { width: 36px; height: 36px; display: grid; place-items: center; color: #160f07; border-radius: 50%; background: #efab3f; box-shadow: 0 0 24px rgba(239,171,63,.3); font-family: Impact, Haettenschweiler, sans-serif; font-size: 14px; }
+.battle-share-header > p { margin: 32px 0 8px; color: #e0443e; font-size: 9px; font-weight: 900; letter-spacing: .27em; text-transform: uppercase; }
+.battle-share-header h1 { margin: 0; color: #fff4df; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 76px; line-height: .98; letter-spacing: .035em; text-transform: uppercase; text-shadow: 0 6px 28px rgba(0,0,0,.75); }
+.battle-share-rule { margin-top: 18px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; color: #6f675e; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .17em; text-transform: uppercase; }
+.battle-share-rule span { height: 1px; background: linear-gradient(90deg, transparent, rgba(224,68,62,.58)); }
+.battle-share-rule span:last-child { transform: scaleX(-1); }
+.battle-share-matchup { position: relative; z-index: 3; height: 570px; margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) 92px minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.battle-share-fighter { position: relative; min-width: 0; padding: 30px 24px 24px; overflow: hidden; text-align: center; border: 1px solid #3a2d23; background: linear-gradient(165deg, rgba(32,25,19,.97), rgba(12,10,9,.99)); box-shadow: 0 28px 60px rgba(0,0,0,.52); }
+.battle-share-fighter-a { box-shadow: inset 4px 0 #9d652a, 0 28px 60px rgba(0,0,0,.52); }
+.battle-share-fighter-b { box-shadow: inset -4px 0 #882827, 0 28px 60px rgba(0,0,0,.52); }
+.battle-share-fighter.is-winner { border-color: rgba(239,171,63,.72); box-shadow: inset 0 0 52px rgba(239,171,63,.07), 0 0 40px rgba(239,171,63,.14), 0 28px 60px rgba(0,0,0,.52); }
+.battle-share-corner { position: absolute; left: 16px; top: 13px; color: #756c62; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 7px; letter-spacing: .18em; text-transform: uppercase; }
+.battle-share-fighter-b .battle-share-corner { left: auto; right: 16px; }
+.battle-share-winner-stamp { position: absolute; z-index: 4; right: 15px; top: 40px; padding: 6px 9px; color: #5a370d; border: 3px double #8c5b20; background: #f1c673; transform: rotate(7deg); font-family: Impact, Haettenschweiler, sans-serif; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 8px 22px rgba(0,0,0,.38); }
+.battle-share-avatar { width: 172px; height: 172px; margin: 6px auto 18px; padding: 5px; border-radius: 50%; background: linear-gradient(145deg, #ffd47c, #654016 60%, #efab3f); box-shadow: 0 0 0 7px #100e0c, 0 0 0 9px rgba(239,171,63,.25), 0 20px 42px rgba(0,0,0,.58), 0 0 45px rgba(239,171,63,.15); }
+.battle-share-avatar img { width: 162px; height: 162px; object-fit: cover; border-radius: 50%; filter: saturate(.78) contrast(1.06); }
+.battle-share-fighter h2 { max-width: 350px; margin: 0 auto; overflow: hidden; color: #fff4df; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 40px; line-height: 1; letter-spacing: .025em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.battle-share-score { margin: 14px 0 18px; display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.battle-share-score span { margin-right: 4px; color: #7b7167; font-size: 7px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+.battle-share-score strong { color: #ffd47c; font-family: Georgia, serif; font-size: 42px; line-height: .8; }
+.battle-share-score small { color: #73695f; font-size: 10px; }
+.battle-share-crime { min-height: 90px; padding: 13px 14px; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(224,68,62,.3); background: rgba(117,27,25,.12); box-shadow: inset 3px 0 #8f2928; text-align: left; }
+.battle-share-crime span { color: #e0443e; font-size: 7px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+.battle-share-crime p { margin: 7px 0 0; overflow: hidden; color: #e7c4ba; font-family: Georgia, serif; font-size: 14px; line-height: 1.35; font-style: italic; }
+.battle-share-fighter > blockquote { height: 88px; margin: 17px 2px 0; overflow: hidden; color: #d8cfc3; font-family: Georgia, "Times New Roman", serif; font-size: 15px; line-height: 1.42; font-style: italic; }
+.battle-share-vs { align-self: center; width: 88px; height: 88px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid #b43b36; border-radius: 50%; background: #721f20; box-shadow: 0 0 0 7px #0b0908, 0 0 34px rgba(224,68,62,.3); transform: rotate(-3deg); }
+.battle-share-vs strong { font-family: Impact, Haettenschweiler, sans-serif; font-size: 38px; line-height: .85; }
+.battle-share-vs span { margin-top: 7px; color: #e1aaa4; font-size: 6px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.battle-share-verdict { position: relative; z-index: 3; height: 347px; margin-top: 28px; padding: 25px 35px 23px; overflow: hidden; text-align: center; border: 1px solid rgba(239,171,63,.48); background: radial-gradient(ellipse at 50% -20%, rgba(239,171,63,.22), transparent 54%), #17120d; box-shadow: 0 0 42px rgba(239,171,63,.08), 0 25px 55px rgba(0,0,0,.5); }
+.battle-share-survivor { color: #efab3f; font-size: 7px; font-weight: 900; letter-spacing: .23em; text-transform: uppercase; }
+.battle-share-verdict-title { margin-top: 7px; display: flex; align-items: baseline; justify-content: center; gap: 13px; }
+.battle-share-verdict-title small { color: #e0443e; font-size: 8px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+.battle-share-verdict-title h3 { max-width: 720px; margin: 0; overflow: hidden; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 51px; line-height: 1; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.battle-share-verdict > p { max-width: 830px; height: 40px; margin: 10px auto 12px; overflow: hidden; color: #b9afa3; font-size: 13px; line-height: 1.45; }
+.battle-share-finisher { max-width: 720px; margin: 0 auto 13px; padding: 12px 20px; border: 1px solid rgba(224,68,62,.34); background: rgba(105,25,24,.15); }
+.battle-share-finisher span { display: block; color: #e0443e; font-size: 7px; font-weight: 900; letter-spacing: .19em; text-transform: uppercase; }
+.battle-share-finisher strong { display: block; margin-top: 5px; overflow: hidden; color: #f0c8b9; font-family: Georgia, serif; font-size: 19px; line-height: 1.2; font-style: italic; text-overflow: ellipsis; white-space: nowrap; }
+.battle-share-verdict > blockquote { height: 54px; margin: 0; overflow: hidden; color: #ffd47c; font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-size: 24px; line-height: 1.13; letter-spacing: .02em; text-transform: uppercase; }
+.battle-share-footer { position: absolute; z-index: 4; left: 56px; right: 56px; bottom: 29px; min-height: 0; margin: 0; padding: 0; display: flex; align-items: center; justify-content: space-between; border: 0; color: #6e665d; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; letter-spacing: .13em; text-transform: uppercase; }
+.battle-share-footer span:first-child { color: #efab3f; font-weight: 900; }
+.battle-download-button { background: linear-gradient(180deg, #f6bd5f, #d98e29); }
+
 .toast { position: fixed; z-index: 30; left: 50%; bottom: 28px; transform: translateX(-50%); padding: 12px 18px; display: flex; align-items: center; gap: 8px; color: #22170c; background: var(--paper); border: 1px solid var(--amber); box-shadow: 0 16px 50px rgba(0,0,0,.48); font-size: 11px; font-weight: 800; }
 .toast span { color: #5f7629; }
 footer { position: relative; z-index: 2; max-width: 1120px; min-height: 90px; margin: 0 auto; padding: 25px 24px; display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; gap: 20px; border-top: 1px solid #211d19; color: #4f4a44; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
