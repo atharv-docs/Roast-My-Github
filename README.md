@@ -65,3 +65,24 @@ Roasts use only public GitHub, code, and project signals—not personal identity
 **Your abandoned side projects may still take this personally.**
 
 </div>
+## Requirements
+
+Before running the project, make sure you have:
+
+- Node.js 18 or later
+- npm installed
+- A stable internet connection
+
+## Troubleshooting
+
+If dependencies fail to install, run:
+
+```bash
+npm install
+```
+
+If the development server does not start, run:
+
+```bash
+npm run dev
+```
